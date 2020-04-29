@@ -20,7 +20,31 @@ paths:
       summary: weather
       tags:
         - Weather endpoints
-      responses: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  coord:
+                    type: object
+                    properties:
+                      lon:
+                        type: number
+                        description: 'City geo location, longitude'
+                        example: '145.77'
+                      lat:
+                        type: number
+                        description: 'City geo location, latitude'
+                        example: '-16.92'
+                      cod:
+                        type: number
+                        description: Internal parameter
+                        example: '200'
+              examples: {}
+          headers: {}
       operationId: get-weather
       description: 'Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on global models and data from more than 40,000 weather stations.'
       security:
@@ -46,6 +70,7 @@ paths:
           in: query
           name: q
           description: '**City name**. *Example: London*. You can call by city name, or by city name and country code. The API responds with a list of results that match a searching word. For the query value, type the city name and optionally the country code divided by a comma; use ISO 3166 country codes.'
+      requestBody: {}
 components:
   schemas: {}
   securitySchemes:
