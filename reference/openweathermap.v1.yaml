@@ -45,6 +45,12 @@ paths:
                         example: '200'
               examples: {}
           headers: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/unauthorized_response'
       operationId: get-weather
       description: 'Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on global models and data from more than 40,000 weather stations.'
       security:
@@ -72,7 +78,18 @@ paths:
           description: '**City name**. *Example: London*. You can call by city name, or by city name and country code. The API responds with a list of results that match a searching word. For the query value, type the city name and optionally the country code divided by a comma; use ISO 3166 country codes.'
       requestBody: {}
 components:
-  schemas: {}
+  schemas:
+    unauthorized_response:
+      title: 401
+      type: object
+      properties:
+        cod:
+          type: integer
+        message:
+          type: string
+      required:
+        - cod
+        - message
   securitySchemes:
     app_id:
       name: app_id
